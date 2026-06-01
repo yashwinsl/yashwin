@@ -1,0 +1,258 @@
+:root {
+  --bg-color: #0e0e0e;
+  --surface-bg: rgba(255, 255, 255, 0.03);
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --surface-border-hover: rgba(255, 255, 255, 0.2);
+  --text-primary: #e4e2e1;
+  --text-muted: #8e9192;
+  --accent-cyan: #00dbe9;
+  --accent-cyan-glow: rgba(0, 219, 233, 0.15);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+  padding: 2rem 1.5rem;
+}
+
+/* Cinematic background glow */
+.background-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0, 219, 233, 0.06) 0%, rgba(0, 0, 0, 0) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Page Container */
+.page-container {
+  width: 100%;
+  max-width: 480px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Profile Header Section */
+.profile-header {
+  margin-bottom: 2.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Profile Image Styling */
+.profile-image-container {
+  width: 140px; /* Mobile base */
+  height: 140px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 219, 233, 0.06);
+  margin-bottom: 1.75rem;
+  position: relative;
+  cursor: pointer;
+  animation: float 6s ease-in-out infinite;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+@media (min-width: 768px) {
+  .profile-image-container {
+    width: 190px; /* Desktop base */
+    height: 190px;
+    border-radius: 36px;
+  }
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover effects for Profile Image */
+.profile-image-container:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 219, 233, 0.25);
+}
+
+.profile-image-container:hover .profile-image {
+  transform: scale(1.08);
+}
+
+/* Name */
+.creator-name {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Title */
+.creator-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-cyan);
+  margin-bottom: 1.25rem;
+  opacity: 0.9;
+}
+
+/* Intro Description */
+.creator-intro {
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Social Buttons Container */
+.social-links-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Glassmorphic Social Card */
+.social-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.25rem;
+  background-color: var(--surface-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: var(--transition-smooth);
+}
+
+.card-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Icon Box inside card */
+.icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-right: 1rem;
+  transition: var(--transition-smooth);
+  overflow: hidden;
+}
+
+.icon-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.card-handle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.card-right {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  transition: var(--transition-smooth);
+}
+
+/* Hover effects for Social Cards */
+.social-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--surface-border-hover);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-cyan-glow);
+}
+
+.social-card:hover .icon-box {
+  background-color: rgba(0, 219, 233, 0.1);
+  color: var(--accent-cyan);
+}
+
+.social-card:hover .card-right {
+  color: var(--accent-cyan);
+  transform: translateX(4px);
+}
+
+/* Footer Section */
+.page-footer {
+  margin-top: 5rem;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  opacity: 0.45;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  width: 100%;
+}
